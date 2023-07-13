@@ -1,0 +1,33 @@
+.cardProducts {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    line-height: 1.75rem;
+}
+
+.imageProduct {
+    background-color: var(--light-grey);
+    border-radius: 10px;
+    width: 25%;
+    height: 25%;
+    margin-right: 1.5rem;
+}
+
+.title {
+    font-size: 1.25rem;
+    font-weight: 400;
+}
+
+.price {
+    font-weight: 700;
+}
+
+.divRating {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.rating {
+    margin-right: .5rem;
+}

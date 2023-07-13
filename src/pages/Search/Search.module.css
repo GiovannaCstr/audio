@@ -1,0 +1,45 @@
+.containerSearch {
+    font-family: var(--main-font);
+    margin: 1.5rem;
+
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.searchTitle {
+    font-size: 1.25rem;
+}
+
+.searchIcons {
+    background-color: transparent;
+    border: none;
+}
+
+.searchBar {
+    padding: 1rem;
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid var(--grey);   
+    margin: 2rem 0;
+    outline: none;
+}
+    
+.searchBar::placeholder {
+    color: var(--grey);
+    font-family: var(--main-font);
+}
+
+.products {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.notFoundProduct {
+    color: var(--dark-grey);
+    font-style: italic;
+}
+

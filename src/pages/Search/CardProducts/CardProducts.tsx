@@ -1,28 +1,35 @@
 import style from './CardProducts.module.css';
 import headset from '../img/image 5.png';
+import star from '../img/star.png';
+import verticalMenu from '../img/more-vertical.svg';
 
-interface cardProps {
-    title: string,
-    price: string,
-    rating: number,
-    reviews: number
+interface CardProps {
+    name: string;
+    price: string;
+    rating: number;
+    
 }
 
-const CardHome = ({title, price, rating, reviews}: cardProps) => {
+const CardProducts = ({ name, price, rating  }: CardProps) => {
     return (
-        <div className={style.cardHome}>
-            <img/>
+        <div className={style.cardProducts}>
+            <img src={headset} className={style.imageProduct}/>
             <div>
-                <h1 className={style.title}>{title}</h1>
-                <span>USD {price}</span>
-            
-                <div>
-                    <p><img src={headset}/>{rating}</p>
-                    <p>{reviews} reviews</p>
+                <h1 className={style.title}>{name}</h1>
+                <span className={style.price}>USD {price}</span>
+                <div className={style.divRating}>
+                    <div className={style.divRating}>
+                        <p>
+                            <img src={star} className={style.rating}/>
+                            {rating}
+                        </p>
+                        <p>reviews</p>
+                    </div>
+                    <img src={verticalMenu} alt="" />
                 </div>
             </div>
         </div>
     )
 }
 
-export default CardHome;
+export default CardProducts;
