@@ -1,0 +1,20 @@
+.cardHome {
+    padding: 1.5rem;
+    display: flex;
+    font-family: var(--main-font);
+    background-color: var(--main-color);
+    border-radius: 1rem;
+}
+
+.title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.shopNowLink {
+    color: var(--accent-color);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 700;
+}
