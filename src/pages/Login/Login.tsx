@@ -2,20 +2,35 @@ import style from './login.module.css';
 import apple from './img/apple.svg';
 import facebook from './img/facebook.svg';
 import google from './img/google.svg';
-import { Link } from 'react-router-dom';
+import { createUserWithEmailAndPassword, 
+    GoogleAuthProvider, signInWithPopup, 
+    FacebookAuthProvider, signInWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react';
 import { auth } from '../../services/firebase';
-import { createUserWithEmailAndPassword, 
-        GoogleAuthProvider, signInWithPopup, 
-        FacebookAuthProvider, OAuthProvider } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 const providerGoogle = new GoogleAuthProvider();
 const providerFacebook = new FacebookAuthProvider();
-const providerApple = new OAuthProvider('apple.com');
 
-export function SignUp() {
-    const [registerEmail, setEmail] = useState<string>("");
-    const [registerPassword, setPassword] = useState<string>("");
+export function Login() {
+    const [loginEmail, setEmail] = useState<string>("");
+    const [loginPassword, setPassword] = useState<string>("");
+    const [registerEmail, setEmailRegister] = useState<string>("");
+    const [registerPassword, setPasswordRegister] = useState<string>("");
+    const [change, setChange] = useState<boolean>(true);
+    const navigate = useNavigate();
+
+    const login = async () => {
+        try {
+            const user = await signInWithEmailAndPassword(
+                auth,
+                loginEmail,
+                loginPassword
+            );
+        } catch (error: any) {
+            console.log(error.message)
+        }
+    }
 
     const register = async () => {
         try {
@@ -63,33 +78,15 @@ export function SignUp() {
         });
     }
 
-    function appleSignUp() {
-        signInWithPopup(auth, providerApple)
-        .then((result) => {
-            const user = result.user;
-            const credential = OAuthProvider.credentialFromResult(result);
-            const accessToken = credential?.accessToken;
-            const idToken = credential?.idToken;
-
-            console.log(user, accessToken, idToken)
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            const email = error.customData.email;
-            const credential = OAuthProvider.credentialFromError(error);
-
-            console.log(errorCode, errorMessage, email, credential)
-        });
-    }
-
     return(
+        <>
         <section className={style.background}>
             <div className={style.divTitle}>
                 <h1 className={style.title}>Audio</h1>
                 <h2 className={style.subtitle}>It's modular and designed to last</h2>
             </div>
-            <div className={style.divLogin}>
+
+            {change ?  <div className={style.divLogin}>
                 <input 
                     type="email" 
                     placeholder="Email" 
@@ -100,9 +97,28 @@ export function SignUp() {
                     placeholder="Password"
                     onChange={(event) => {setPassword(event.target.value)}}
                     className={style.input}/>
+                <h3 className={style.loginParagraph}>Forgot Password</h3>
+                <button onClick={login} className={style.loginButton}>Sign In</button>
+                <p className={style.loginParagraph}>Didn't have any account? 
+                    <button onClick={() => setChange(false)} className={style.loginLink}>
+                        Sign Up here
+                    </button>
+                </p>
+            </div> : 
+                <div className={style.divLogin}>
+                <input 
+                    type="email" 
+                    placeholder="Email" 
+                    onChange={(event) => {setEmailRegister(event.target.value)}}
+                    className={style.input}/>
+                <input 
+                    type="text" 
+                    placeholder="Password"
+                    onChange={(event) => {setPasswordRegister(event.target.value)}}
+                    className={style.input}/>
                 <button onClick={register} className={style.registerButton}>Sign Up</button>
                 <div className={style.divAcounts}>
-                    <button onClick={appleSignUp}
+                    <button
                         className={style.buttonAcounts}>
                         <img src={apple}/>
                     </button>
@@ -117,11 +133,14 @@ export function SignUp() {
                 </div>
                 <p className={style.loginParagraph}>
                     If you have an account? 
-                    <Link to={"/"} className={style.loginLink}>
+                    <button onClick={() => setChange(true)} className={style.loginLink}>
                         Sign In here
-                    </Link>
+                    </button>
                 </p>
             </div>
+            }
+           
         </section>
+        </>
     )
 }

@@ -58,19 +58,3 @@
     color: var(--dark-grey);
 }
 
-.divFeaturedProducts {
-    background-color: var(--main-color);
-    padding: 1rem;
-    border-radius: 1rem;
-    font-family: var(--main-font);
-}
-
-.productTitle {
-    font-size: 1rem;
-    font-weight: 400;
-}
-
-.productPrice {
-    font-weight: 700;
-    font-size: .75rem;
-}

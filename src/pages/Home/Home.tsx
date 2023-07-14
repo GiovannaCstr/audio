@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import { SwiperSlide } from 'swiper/react';
 import { ApiContext } from '../../context/ApiContext';
-import cablePhoto from './img/image 5.png';
 import style from './Home.module.css';
 import Carousel from '../../assets/components/Carousel/Carousel';
-import CardHome from '../../assets/components/CardHome/CardHome';
+import CardHome from './CardHome/CardHome';
+import FeaturedProducts from '../../assets/components/FeaturedProducts/FeaturedProducts';
 
 export function Home() {
     const settingsCategory = {
@@ -17,7 +17,7 @@ export function Home() {
 
     return(
         <ApiContext.Consumer>
-            {({items, headphones, headsets}) => (
+            {({ headphones, headsets}) => (
                 <>
                     <section className={style.container}>
                         <h1 className={style.title}>What are you looking for today?</h1>
@@ -32,11 +32,11 @@ export function Home() {
                             <button className={style.buttonCategory}>Headphones</button>
                             <button className={style.buttonCategory}>Headsets</button>
                             <Carousel settings={settingsCategory}>
-                                    {headphones.map((item) => (
-                                        <SwiperSlide>
-                                            <CardHome title={item.name}/>
-                                        </SwiperSlide>
-                                    ))}
+                                {headphones.map((item) => (
+                                    <SwiperSlide>
+                                        <CardHome title={item.name}/>
+                                    </SwiperSlide>
+                                ))}
                             </Carousel>
                         </div>
                         <div>
@@ -50,11 +50,11 @@ export function Home() {
                                 <Carousel settings={settingsFeatured}>
                                     {headsets.map((item) => (
                                         <SwiperSlide>
-                                            <div className={style.divFeaturedProducts}>
-                                                <img src={cablePhoto}/>
-                                                <h2 className={style.productTitle}>{item.name}</h2>
-                                                <span className={style.productPrice}>{item.price}</span>
-                                            </div>
+                                            <FeaturedProducts
+                                                name={item.name}
+                                                price={item.price}
+                                                id={item.id}
+                                            />
                                         </SwiperSlide>
                                     ))}
                                 </Carousel>
