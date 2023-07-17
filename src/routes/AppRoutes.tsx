@@ -4,6 +4,7 @@ import { Home } from "../pages/Home/Home";
 import { Search } from "../pages/Search/Search";
 import { ProductsProvider } from "../context/ApiContext";
 import { AllProducts } from "../pages/AllProducts/AllProducts";
+import { ProductDetail } from "../pages/ProductDetails/ProductDetail";
 
 
 export function AppRoutes() {
@@ -15,6 +16,7 @@ export function AppRoutes() {
                     <Route path="/home" element={<Home/>}/> :
                     <Route path="/search" element={<Search/>}/>
                     <Route path="/allproducts" element={<AllProducts/>}/>
+                    <Route path="/ProductDetail/:id" element={<ProductDetail/>}/>
                 </Routes>
             </BrowserRouter>
         </ProductsProvider>

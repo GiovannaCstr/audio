@@ -4,19 +4,8 @@
 
 }
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-}
-
 .searchTitle {
     font-size: 1.25rem;
-}
-
-.searchIcons {
-    background-color: transparent;
-    border: none;
 }
 
 .searchBar {

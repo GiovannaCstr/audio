@@ -38,7 +38,7 @@ export const ProductsProvider = ({children} : ProductsProviderProps) => {
         api.get('./').then((response) => {
             const allProducts: ApiResponse[] = response.data;
             setItems(allProducts);
-
+            
             const filteredHeadphones = allProducts.filter(
                 ((product: ApiResponse) => product.category === "Headphones")
             )

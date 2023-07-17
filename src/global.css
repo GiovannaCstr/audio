@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Montserrat:wght@700&display=swap');
 
 * {
     margin: 0;
@@ -8,6 +8,7 @@
 
 :root {
     --main-font: 'DM Sans', sans-serif;
+    --second-font: 'Montserrat', sans-serif;
     --main-color: #FFF; 
     --second-color: #000;
     --accent-color: #0ACF83;

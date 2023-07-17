@@ -7,7 +7,6 @@ import { createUserWithEmailAndPassword,
     FacebookAuthProvider, signInWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react';
 import { auth } from '../../services/firebase';
-import { useNavigate } from 'react-router-dom';
 
 const providerGoogle = new GoogleAuthProvider();
 const providerFacebook = new FacebookAuthProvider();
@@ -18,7 +17,6 @@ export function Login() {
     const [registerEmail, setEmailRegister] = useState<string>("");
     const [registerPassword, setPasswordRegister] = useState<string>("");
     const [change, setChange] = useState<boolean>(true);
-    const navigate = useNavigate();
 
     const login = async () => {
         try {

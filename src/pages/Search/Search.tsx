@@ -2,8 +2,8 @@ import { ApiContext } from '../../context/ApiContext';
 import { useState } from 'react';
 import CardProducts from './CardProducts/CardProducts';
 import style from './Search.module.css';
-import backIcon from './img/back.svg';
-import shoppingCart from './img/shopping-cart.svg';
+import BackBar from '../../assets/components/BackBar/BackBar';
+
 
 export function Search() {
     const [search, setSearch] = useState<string>("");
@@ -20,15 +20,9 @@ export function Search() {
 
             return (
                 <div className={style.containerSearch}>
-                    <header className={style.header}>
-                        <button className={style.searchIcons}>
-                            <img src={backIcon}/>
-                        </button>
+                    <BackBar>
                         <h1 className={style.searchTitle}>Search</h1>
-                        <button className={style.searchIcons}>
-                            <img src={shoppingCart}/>  
-                        </button>
-                    </header>
+                    </BackBar>
                     <section>
                         <input type="search" 
                             placeholder="Search headphone"
