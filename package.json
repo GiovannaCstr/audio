@@ -14,7 +14,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-spring": "^9.7.2",
-    "react-spring-bottom-sheet": "^3.5.0-alpha.0",
+    "react-spring-bottom-sheet-updated": "^3.5.6",
     "slick-carousel": "^1.8.1",
     "swiper": "^10.0.4"
   },

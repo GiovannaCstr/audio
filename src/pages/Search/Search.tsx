@@ -1,6 +1,6 @@
 import { ApiContext } from '../../context/ApiContext';
 import { useState } from 'react';
-import CardProducts from './CardProducts/CardProducts';
+import CardProducts from '../../assets/components/CardProducts/CardProducts';
 import style from './Search.module.css';
 import BackBar from '../../assets/components/BackBar/BackBar';
 
@@ -40,7 +40,6 @@ export function Search() {
                                     name={item.name}
                                     price={item.price}
                                     rating={item.rating}
-                                    
                                 />
                             ))
                         }

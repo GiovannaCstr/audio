@@ -48,9 +48,9 @@ export function ProductDetail() {
               </SwiperSlide>
             </Carousel>
           </div>
-          <p className={style.review}>Reviews (3)</p>
+          <p className={style.review}>Reviews ({selectedItem?.reviews.length})</p>
           <div>
-            {selectedItem?.reviews.map((review, index) => (
+            {selectedItem?.reviews.map((review) => (
               <div  className={style.divReview}>
                 <div>
                   <img src={userImage}/>
@@ -85,9 +85,9 @@ export function ProductDetail() {
         </> : 
         <>
           <div>
-            <h2>{selectedItem?.description}</h2>
-            <p>The speaker unit contains a diaphragm that is precision-grown from NAC Audio bio-cellulose, making it stiffer, lighter and stronger than regular PET speaker units, and allowing the sound-producing diaphragm to vibrate without the levels of distortion found in other speakers. </p>
-            <p>The speaker unit contains a diaphragm that is precision-grown from NAC Audio bio-cellulose, making it stiffer, lighter and stronger than regular PET speaker units, and allowing the sound-producing diaphragm to vibrate without the levels of distortion found in other speakers. </p>
+            <h2 className={style.subtitle}>Highly Detailed Audio</h2>
+            <p className={style.text}>{selectedItem?.description}</p>
+            <p className={style.text}>{selectedItem?.description}</p>
           </div>
         </>
       }  
