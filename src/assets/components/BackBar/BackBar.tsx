@@ -2,7 +2,7 @@ import backIcon from './img/back.svg';
 import shoppingCart from './img/shopping-cart.svg';
 import style from './BackBar.module.css';
 import { ReactNode } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 interface BackBar {
     children?: ReactNode
@@ -13,14 +13,16 @@ const BackBar = ({children}:BackBar) => {
 
     return (
         <header className={style.header}>
-            <button className={style.searchIcons}
+            <button className={style.icons}
             onClick={() => navigate(-1)}>
                     <img src={backIcon}/>
             </button>
                 {children}
-            <button className={style.searchIcons}>
-                <img src={shoppingCart}/>  
-            </button>
+            <Link to={'/shoppingCart'}>
+                <button className={style.icons}>
+                    <img src={shoppingCart}/>  
+                </button>
+            </Link>
         </header>
     )
 }

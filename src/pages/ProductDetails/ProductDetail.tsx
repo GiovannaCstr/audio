@@ -1,6 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { ApiContext } from '../../context/ApiContext';
 import { useContext, useState } from 'react';
+import { ShoppingCartContext } from '../../context/ShoppingCartContext';
 import { SwiperSlide } from 'swiper/react';
 import BackBar from '../../assets/components/BackBar/BackBar';
 import Carousel from '../../assets/components/Carousel/Carousel';
@@ -12,6 +13,7 @@ import style from './ProductDetail.module.css';
 
 export function ProductDetail() {
   const [change, setChange] = useState<boolean>(true);
+  const { addProduct, addQuantity, products } = useContext(ShoppingCartContext);
 
   const settingsImages = {
     slidesPerView: 1.1,
@@ -25,6 +27,17 @@ export function ProductDetail() {
   const { items } = useContext(ApiContext);
   
   const selectedItem = items.find((item) => item.id === Number(parameters.id));
+
+  function addToCart() {
+    if(selectedItem){
+      if(!products.find((product) => product.id === Number(selectedItem?.id))){
+        addProduct(selectedItem); 
+      } else {
+        addQuantity(selectedItem.id);
+      }
+      
+    }
+  }
 
   return (
     <main className={style.divMain}>
@@ -91,7 +104,7 @@ export function ProductDetail() {
           </div>
         </>
       }  
-      <button className={style.buttonAddToCart}>Add to Cart</button>
+      <button className={style.buttonAddToCart} onClick={addToCart}>Add to Cart</button>
       </section>
     </main>
   )

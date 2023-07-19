@@ -28,6 +28,16 @@
     gap: 1rem;
 }
 
+.divStar {
+    display: flex;
+    align-items: center;
+}
+
 .rating {
     margin-right: .5rem;
+}
+
+.link {
+    text-decoration: none;
+    color: var(--second-color);
 }

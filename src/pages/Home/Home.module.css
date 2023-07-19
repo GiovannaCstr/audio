@@ -2,6 +2,28 @@
     margin: 1.5rem;
 }
 
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+}
+
+.divIconAudio{
+    display: flex;
+}
+
+.logo {
+    font-family: var(--main-font);
+    font-size: 1.5rem;
+    margin-left: .75rem;
+}
+
+.userName {
+    font-family: var(--main-font);
+    margin-bottom: .75rem;
+}
+
 .title {
     font-family: var(--main-font);
     color: var(--second-color);
@@ -41,7 +63,7 @@
     margin-bottom: 1.5rem;
 }
 
-.buttonCategory:hover {
+.active {
     background-color:  var(--accent-color);
     color: var(--main-color);
 }

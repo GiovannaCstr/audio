@@ -14,9 +14,6 @@ export function Search() {
                 const filteredItems = items.filter((item) =>
                 item.name.toLowerCase().includes(search.toLowerCase())
             );
-      
-            console.log(search);
-            console.log(filteredItems);
 
             return (
                 <div className={style.containerSearch}>
@@ -32,14 +29,15 @@ export function Search() {
                         />
                         <h2 className={style.products}>Popular product</h2>
                         {search === "" ? 
-                            <p className={style.notFoundProduct}>Enter to search for a product</p> 
+                            <p className={style.notFoundProduct}>Type to search for a product</p> 
                         :
                             filteredItems.map((item) => (
                                 <CardProducts
-                                    key={item.id}
+                                    id={item.id}
                                     name={item.name}
                                     price={item.price}
                                     rating={item.rating}
+                                    reviews={item.reviews.length}
                                 />
                             ))
                         }

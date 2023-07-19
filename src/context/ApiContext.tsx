@@ -1,7 +1,7 @@
 import { ReactElement, createContext, useState, useEffect } from "react"; 
 import { api } from "../services/api"; 
 
-interface ApiResponse {
+export interface ApiResponse {
     category: string,
     created_at: string,
     description: string,

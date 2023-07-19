@@ -34,7 +34,7 @@
 .divCarousel {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: .5rem
+    grid-gap: .5rem;
 }
 
 .cardProducts {
@@ -53,3 +53,67 @@
 .cardProducts span {
     font-size: 1rem;
 }
+
+.bottomSheetBody {
+    padding: 1.5rem;
+    font-family: var(--main-font);
+}
+
+.bottomSheetHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    font-family: var(--second-font);
+}
+
+.bottomSheetClose {
+    background: transparent;
+    border: none;
+}
+
+.title {
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin: .75rem 0;
+}
+
+.buttonCategory {
+    background-color:  transparent;
+    padding: .25rem .75rem;
+    border-radius: 1rem;
+    border: none;
+    font-family: var(--main-font);
+    font-size: 1rem;
+    color: var(--dark-grey);
+    margin-bottom: 1.5rem;
+}
+
+.sortBy {
+    font-family: var(--main-font);
+    font-size: 1rem;
+    border: 1px solid var(--dark-grey);
+    background: transparent;
+    padding: .75rem;
+    border-radius: 10px;
+    margin: 0 1rem 1rem 0;
+}
+
+.sortBy:hover {
+    background-color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    color: var(--main-color);
+}
+
+.applyFilter {
+    font-family: var(--main-font);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--main-color);
+    border: none;
+    border-radius: 10px;
+    background-color: var(--accent-color);
+    padding: .75rem;
+    margin-top: 1.75rem;
+    width: 100%;
+}
+

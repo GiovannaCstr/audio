@@ -10,7 +10,7 @@ interface CardProps {
 
 const FeaturedProducts = ({ name, price, id }: CardProps) => {
     return(
-        <Link to={`/ProductDetail/${id}`} className={style.link}>
+        <Link to={`/productDetail/${id}`} className={style.link}>
             <div className={style.divFeaturedProducts}>
                 <img src={cablePhoto}/>
                 <h2 className={style.productTitle}>{name}</h2>
