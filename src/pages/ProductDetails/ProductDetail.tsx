@@ -10,9 +10,14 @@ import productImage1 from './img/productImage.png';
 import productImage2 from './img/productImage(2).png';
 import userImage from './img/userImage.png';
 import style from './ProductDetail.module.css';
+import Stars from '../../assets/components/Stars/Stars';
 
 export function ProductDetail() {
+  const parameters = useParams();
   const [change, setChange] = useState<boolean>(true);
+  const [isActiveOverview, setIsActiveOverview] = useState<boolean>(true);
+  const [isActiveFeatures, setIsActiveFeatures] = useState<boolean>(false);
+  const { items } = useContext(ApiContext);
   const { addProduct, addQuantity, products } = useContext(ShoppingCartContext);
 
   const settingsImages = {
@@ -23,9 +28,6 @@ export function ProductDetail() {
     slidesPerView: 2,
   }
 
-  const parameters = useParams();
-  const { items } = useContext(ApiContext);
-  
   const selectedItem = items.find((item) => item.id === Number(parameters.id));
 
   function addToCart() {
@@ -39,6 +41,18 @@ export function ProductDetail() {
     }
   }
 
+  function overviewClick() {
+    setIsActiveOverview(true);
+    setIsActiveFeatures(false);
+    setChange(true);
+  }
+
+  function featuresClick() {
+    setIsActiveFeatures(true);
+    setIsActiveOverview(false);
+    setChange(false);
+  }
+
   return (
     <main className={style.divMain}>
       <BackBar/>
@@ -46,8 +60,8 @@ export function ProductDetail() {
         <span className={style.price}>{selectedItem?.price}</span>
         <h1 className={style.title}>{selectedItem?.name}</h1>
         <div>
-          <button className={style.buttonSection} onClick={() => setChange(true)}>Overview</button>
-          <button className={style.buttonSection} onClick={() => setChange(false)}>Features</button>
+          <button className={`${style.buttonSection} ${isActiveOverview ? style.active : ''}`} onClick={overviewClick}>Overview</button>
+          <button className={`${style.buttonSection} ${isActiveFeatures ? style.active : ''}`} onClick={featuresClick}>Features</button>
         </div>
         {change ? 
         <>
@@ -70,7 +84,7 @@ export function ProductDetail() {
                 </div>
                 <div>
                   <h2 className={style.user}>{review.user}</h2>
-                  <span>{review.rating}</span>
+                  <Stars review={review.rating}/>
                   <p className={style.description}>{review.description}</p>
                 </div>
               </div>

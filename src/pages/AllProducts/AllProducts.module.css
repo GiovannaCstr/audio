@@ -1,6 +1,9 @@
 .divMain {
-    padding: 1.5rem;
     font-family: var(--main-font);
+}
+
+.sectionTitle {
+    padding: 1.5rem;
 }
 
 .featuredProducts {
@@ -34,16 +37,24 @@
 .divCarousel {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: .5rem;
+    grid-gap: 1rem;
+    padding: 1.5rem;
+    background-color: var(--light-grey);
+    border-radius: 1.5rem 1.5rem 0 0;
 }
 
 .cardProducts {
     flex-direction: column;
+    background-color: var(--main-color);
+    padding: .75rem;
+    border-radius: 12px;
 }
 
 .cardProducts img {
     width: auto;    
     height: auto;
+    margin: 0;
+    background: transparent;
 }
 
 .cardProducts h1 {
@@ -75,17 +86,6 @@
     font-size: 1.25rem;
     font-weight: 400;
     margin: .75rem 0;
-}
-
-.buttonCategory {
-    background-color:  transparent;
-    padding: .25rem .75rem;
-    border-radius: 1rem;
-    border: none;
-    font-family: var(--main-font);
-    font-size: 1rem;
-    color: var(--dark-grey);
-    margin-bottom: 1.5rem;
 }
 
 .sortBy {

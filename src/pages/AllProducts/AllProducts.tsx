@@ -4,6 +4,7 @@ import { BottomSheet } from 'react-spring-bottom-sheet-updated';
 import 'react-spring-bottom-sheet-updated/dist/style.css'
 import BackBar from '../../assets/components/BackBar/BackBar';
 import CardProducts from '../../assets/components/CardProducts/CardProducts';
+import ButtonCategory from '../../assets/components/ButtonCategory/ButtonCategory';
 import iconFilter from './img/filter.svg';
 import iconClose from './img/closeIcon.svg';
 import style from './AllProducts.module.css';
@@ -14,16 +15,26 @@ export function AllProducts() {
     const { items, headphones, headsets } = useContext(ApiContext);
     const [filteredItems, setFilteredItems] = useState([...items]);
 
-    let sorted = [...items];
+    const [isActiveHeadphones, setIsActiveHeadphones] = useState<boolean>(false);
+    const [isActiveHeadsets, setIsActiveHeadsets] = useState<boolean>(false);
+
+
+    let sorted = [...filteredItems];
     let sortedArray = [...sorted];
 
     function sortByCategory(category: string) {
       if(category == "Headphones"){
         setFilteredItems([...headphones]);
+        setIsActiveHeadphones(true);
+        setIsActiveHeadsets(false);
       } else if (category == "Headsets"){
         setFilteredItems([...headsets]);
+        setIsActiveHeadphones(false);
+        setIsActiveHeadsets(true);
       } else {
         setFilteredItems([...items]);
+        setIsActiveHeadphones(false);
+        setIsActiveHeadsets(false);
       }
       console.log(category);
     }
@@ -62,17 +73,19 @@ export function AllProducts() {
       <ApiContext.Consumer>
         {({items}) => (
           <main className={style.divMain}>
-            <BackBar/>
-            <h2 className={style.featuredProducts}>Featured products</h2>
-            <h1 className={style.seeAllProducts}>See all products</h1> 
-            <button onClick={() => setOpen(true)}
-            className={style.buttonFilter}>
-              <img src={iconFilter}/>
-              Filter
-            </button>
+            <section className={style.sectionTitle}>
+              <BackBar/>
+              <h2 className={style.featuredProducts}>Featured products</h2>
+              <h1 className={style.seeAllProducts}>See all products</h1> 
+              <button onClick={() => setOpen(true)}
+              className={style.buttonFilter}>
+                <img src={iconFilter}/>
+                Filter
+              </button>
+            </section>
             <div className={style.divCarousel}>
               {apply ? 
-                filteredItems.map((item) => (
+                sorted.map((item) => (
                   <CardProducts
                     id={item.id}
                     name={item.name}
@@ -105,8 +118,16 @@ export function AllProducts() {
                 </div>
                 <h3 className={style.title}>Category</h3>
                 <div>
-                    <button className={style.buttonCategory} onClick={() => sortByCategory("Headphones")}>Headphones</button>
-                    <button className={style.buttonCategory} onClick={() => sortByCategory("Headsets")}>Headsets</button>
+                    <ButtonCategory
+                      onClick={() => sortByCategory("Headphones")}
+                      isActive={isActiveHeadphones}
+                      label={"Headphones"}
+                    />
+                    <ButtonCategory
+                      onClick={() => sortByCategory("Headsets")}
+                      isActive={isActiveHeadsets}
+                      label={"Headsets"}
+                    />
                 </div>
                 <h3 className={style.title}>Sort By</h3>
                   <button className={style.sortBy} onClick={sortByPopularity}>Popularity</button>

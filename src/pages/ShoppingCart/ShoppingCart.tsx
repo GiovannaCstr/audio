@@ -11,11 +11,16 @@ import style from './ShoppingCart.module.css';
 export function ShoppingCart() {
     const navigate = useNavigate();
 
-    const { products, removeProduct, clearAllProducts, addQuantity, removeQuantity } = useContext(ShoppingCartContext);
-
-    const totalProducts = products.reduce((accumulator, product) => accumulator + (product.quantity || 1), 0);
-    
-    const totalPrice = products.reduce((accumulator, product) => accumulator + (Number(product.price) * (Number(product.quantity) || 1)), 0);
+    const { 
+        products, 
+        totalPrice,
+        totalProducts,
+        removeProduct, 
+        clearAllProducts, 
+        addQuantity, 
+        removeQuantity
+    } = useContext(ShoppingCartContext);
+   
 
     return (
         <main className={style.main}>

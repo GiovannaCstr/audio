@@ -7,8 +7,6 @@ import { AllProducts } from "../pages/AllProducts/AllProducts";
 import { ProductDetail } from "../pages/ProductDetails/ProductDetail";
 import { ShoppingCart } from "../pages/ShoppingCart/ShoppingCart";
 import { ShoppingCartProvider } from "../context/ShoppingCartContext";
-import { auth } from "../services/firebase";
-import { useState } from "react";
 
 export function AppRoutes() {
 

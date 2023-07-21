@@ -1,8 +1,9 @@
 import { ApiContext } from '../../context/ApiContext';
 import { useState } from 'react';
 import CardProducts from '../../assets/components/CardProducts/CardProducts';
-import style from './Search.module.css';
 import BackBar from '../../assets/components/BackBar/BackBar';
+import searchIcon from './img/search.svg';
+import style from './Search.module.css';
 
 
 export function Search() {
@@ -21,12 +22,15 @@ export function Search() {
                         <h1 className={style.searchTitle}>Search</h1>
                     </BackBar>
                     <section>
-                        <input type="search" 
-                            placeholder="Search headphone"
-                            value={search}
-                            onChange={(e) => setSearch( e.target.value)}
-                            className={style.searchBar}
-                        />
+                        <div>
+                            <input type="search" 
+                                placeholder="Search headphone"
+                                value={search}
+                                onChange={(e) => setSearch( e.target.value)}
+                                className={style.searchBar}
+                            />
+                            <img src={searchIcon} className={style.searchIcon}/>
+                        </div>
                         <h2 className={style.products}>Popular product</h2>
                         {search === "" ? 
                             <p className={style.notFoundProduct}>Type to search for a product</p> 

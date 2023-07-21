@@ -4,7 +4,34 @@
     margin-bottom: 1rem;
 }
 
+.link {
+    text-decoration: none;
+}
+
 .icons {
     background-color: transparent;
     border: none;
+}
+
+.iconCart {
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    right: 1.5rem;
+}
+
+.backgroundNumber {
+    background-color: var(--accent-color);
+    position: relative;
+    text-align: center;
+    border-radius: 12px;
+    width: 20px;
+    height: 25px;
+    right: 1rem;    
+    top: .75rem;
+}
+
+.numberOfProducts {
+    font-size: 80%;
+    font-weight: 700;
 }

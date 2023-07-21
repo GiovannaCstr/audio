@@ -1,17 +1,26 @@
 import { Link } from 'react-router-dom';
 import { SwiperSlide } from 'swiper/react';
 import { ApiContext } from '../../context/ApiContext';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import style from './Home.module.css';
 import menuIcon from './img/menuIcon.svg';
 import audioIcon from './img/audioLogo.svg';
 import userIcon from './img/userImage.png';
+import searchIcon from './img/search.svg';
 import Carousel from '../../assets/components/Carousel/Carousel';
 import CardHome from './CardHome/CardHome';
 import FeaturedProducts from '../../assets/components/FeaturedProducts/FeaturedProducts';
+import ButtonCategory from '../../assets/components/ButtonCategory/ButtonCategory';
 
 export function Home() {
     const [change, setChange] = useState<boolean>(true);
+    const [isActiveHeadphones, setIsActiveHeadphones] = useState<boolean>(true);
+    const [isActiveHeadsets, setIsActiveHeadsets] = useState<boolean>(false);
+
+    useEffect(() => {
+        setIsActiveHeadsets(!change);
+        setIsActiveHeadphones(change);
+    }, [change]);
 
     const settingsCategory = {
         slidesPerView: 1,
@@ -39,27 +48,45 @@ export function Home() {
                         <p className={style.userName}>Hi, Andrea</p>
                         <h1 className={style.title}>What are you looking for today?</h1>
                         <Link to={'/search'}>
-                            <input type="search" 
-                            placeholder="Search headphoone"
-                            className={style.inputSearch}/>
+                            <div>
+                                <input type="search" 
+                                    placeholder="Search headphoone"
+                                    className={style.inputSearch}
+                                />
+                                <img src={searchIcon} className={style.searchIcon}/>
+                            </div>
                         </Link>
                     </section>
                     <section className={style.carouselSection}>
-                        <div>   
-                            <button className={style.buttonCategory} onClick={() => setChange(true)}>Headphones</button>
-                            <button className={style.buttonCategory} onClick={() => setChange(false)}>Headsets</button>
+                        <div>
+                            <ButtonCategory
+                                onClick={() => setChange(true)}
+                                isActive={isActiveHeadphones}
+                                label={"Headphones"}
+                            />
+                            <ButtonCategory
+                                onClick={() => setChange(false)}
+                                isActive={isActiveHeadsets}
+                                label={"Headsets"}
+                            />   
                             {change ? 
                                 <Carousel settings={settingsCategory}>
                                     {headphones.map((item) => (
                                         <SwiperSlide>
-                                            <CardHome title={item.name}/>
+                                            <CardHome 
+                                                title={item.name}
+                                                id={item.id}
+                                            />
                                         </SwiperSlide>
                                     ))}
                                 </Carousel> : 
                                 <Carousel settings={settingsCategory}>
                                     {headsets.map((item) => (
                                         <SwiperSlide>
-                                            <CardHome title={item.name}/>
+                                            <CardHome 
+                                                title={item.name}
+                                                id={item.id}
+                                            />
                                         </SwiperSlide>
                                     ))}
                                 </Carousel>
