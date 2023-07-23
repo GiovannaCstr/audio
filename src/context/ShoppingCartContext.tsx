@@ -40,7 +40,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProps) {
 
     function removeQuantity(id: number) {
         const updatedProducts = products.map((product) =>
-        product.id === id ? { ...product, quantity: (product.quantity || 1) - 1 } : product);
+        product.id === id ? { ...product, quantity: Math.max((product.quantity || 1) - 1, 1) } : product);
         setProducts(updatedProducts);
     }
 

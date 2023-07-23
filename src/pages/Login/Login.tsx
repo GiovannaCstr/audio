@@ -1,9 +1,9 @@
-import style from './login.module.css';
 import gitHub from './img/gitHubIcon.svg';
 import facebook from './img/facebook.svg';
 import google from './img/google.svg';
 import logoEmail from './img/mail.svg';
 import logoPadLock from './img/lock.svg';
+import style from './login.module.css';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../../services/firebase';
@@ -16,6 +16,9 @@ export function Login() {
     const providerGoogle = new GoogleAuthProvider();
     const providerFacebook = new FacebookAuthProvider();
     const providerGitHub = new GithubAuthProvider();
+
+    const [loginError, setLoginError] = useState<string>("");
+    const [regiterError, setRegisterError] = useState<string>("");
 
     const [loginEmail, setEmail] = useState<string>("");
     const [loginPassword, setPassword] = useState<string>("");
@@ -43,13 +46,18 @@ export function Login() {
                 loginEmail,
                 loginPassword
             );
+            setLoginError("");
             setEmail("");
             setPassword("");
+            setEmailRegister("");
+            setPasswordRegister("");
             navigate("/home");
         } catch (error: any) {
-            console.log(error.message);
+            setLoginError("Invalid email or password");
             setEmail("");
             setPassword("");
+            setEmailRegister("");
+            setPasswordRegister("");
         }
     }
 
@@ -63,6 +71,7 @@ export function Login() {
             console.log(user);
         } catch (error: any) {
             console.log(error.message)
+            setRegisterError("This email is already in use")
         }
     }
 
@@ -125,6 +134,7 @@ export function Login() {
 
         {change ?  
         <div className={style.divLogin}>
+            {loginError && <p className={style.errorText}>{loginError}</p>}
             <div>
                 <input 
                     type="email" 
@@ -135,9 +145,9 @@ export function Login() {
                 />
                 <img src={logoEmail} className={style.logoInput}/>
             </div>
-            <div>
+            <div className={style.divInput}>
                 <input 
-                    type="text" 
+                    type="password" 
                     placeholder="Password"
                     onChange={(event) => {setPassword(event.target.value)}}
                     value={loginPassword}
@@ -168,22 +178,23 @@ export function Login() {
             </p>
         </div> : 
         <div className={style.divLogin}>
+        {regiterError && <p className={style.errorText}>{regiterError}</p>}
             <div>
                 <input 
                     type="email" 
                     placeholder="Email" 
                     onChange={(event) => {setEmailRegister(event.target.value)}}
-                    value={loginEmail}
+                    value={registerEmail}
                     className={style.input}
                 />
                 <img src={logoEmail} className={style.logoInput}/>
             </div>
             <div>
                 <input 
-                    type="text" 
+                    type="password" 
                     placeholder="Password"
                     onChange={(event) => {setPasswordRegister(event.target.value)}}
-                    value={loginPassword}
+                    value={registerPassword}
                     className={style.input}
                 />
                 <img src={logoPadLock} className={style.logoInput}/>

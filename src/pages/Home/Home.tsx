@@ -1,16 +1,16 @@
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { SwiperSlide } from 'swiper/react';
 import { ApiContext } from '../../context/ApiContext';
-import { useState, useEffect } from 'react';
+import Carousel from '../../assets/components/Carousel/Carousel';
+import CardHome from './CardHome/CardHome';
+import FeaturedProducts from '../../assets/components/FeaturedProducts/FeaturedProducts';
+import ButtonCategory from '../../assets/components/ButtonCategory/ButtonCategory';
 import style from './Home.module.css';
 import menuIcon from './img/menuIcon.svg';
 import audioIcon from './img/audioLogo.svg';
 import userIcon from './img/userImage.png';
 import searchIcon from './img/search.svg';
-import Carousel from '../../assets/components/Carousel/Carousel';
-import CardHome from './CardHome/CardHome';
-import FeaturedProducts from '../../assets/components/FeaturedProducts/FeaturedProducts';
-import ButtonCategory from '../../assets/components/ButtonCategory/ButtonCategory';
 
 export function Home() {
     const [change, setChange] = useState<boolean>(true);
@@ -72,7 +72,7 @@ export function Home() {
                             {change ? 
                                 <Carousel settings={settingsCategory}>
                                     {headphones.map((item) => (
-                                        <SwiperSlide>
+                                        <SwiperSlide key={item.id}>
                                             <CardHome 
                                                 title={item.name}
                                                 id={item.id}
@@ -82,7 +82,7 @@ export function Home() {
                                 </Carousel> : 
                                 <Carousel settings={settingsCategory}>
                                     {headsets.map((item) => (
-                                        <SwiperSlide>
+                                        <SwiperSlide key={item.id}>
                                             <CardHome 
                                                 title={item.name}
                                                 id={item.id}
@@ -102,7 +102,7 @@ export function Home() {
                             <div>
                                 <Carousel settings={settingsFeatured}>
                                     {headsets.map((item) => (
-                                        <SwiperSlide>
+                                        <SwiperSlide key={item.id}>
                                             <FeaturedProducts
                                                 name={item.name}
                                                 price={item.price}

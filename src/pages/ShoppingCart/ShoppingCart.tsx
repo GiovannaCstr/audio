@@ -42,28 +42,28 @@ export function ShoppingCart() {
                 </div> :
             products.map((product) => (
                 <div className={style.divProduct}>
-                <img src={productImage} className={style.productImage}/>
-                <div>
-                    <h2 className={style.productName}>{product.name}</h2>
-                    <span className={style.price}>{product.price}</span>
-                    <div className={style.divAddProduct}>
-                        <div>
-                            <button className={style.quantityButton} onClick={() => removeQuantity(product.id)}>-</button>
-                            <span className={style.quantity}>{product.quantity}</span>
-                            <button className={style.quantityButton} onClick={() => addQuantity(product.id)}>+</button>
+                    <img src={productImage} className={style.productImage}/>
+                    <div className={style.divInfos}>
+                        <h2 className={style.productName}>{product.name}</h2>
+                        <span className={style.price}>{product.price}</span>
+                        <div className={style.divAddProduct}>
+                            <div>
+                                <button className={style.quantityButton} onClick={() => removeQuantity(product.id)}>-</button>
+                                <span className={style.quantity}>{product.quantity}</span>
+                                <button className={style.quantityButton} onClick={() => addQuantity(product.id)}>+</button>
+                            </div>
+                            <button className={style.trashButton} 
+                            onClick={() => removeProduct(product.id)}>
+                                <img src={trash}/>
+                            </button>
                         </div>
-                        <button className={style.trashButton} 
-                        onClick={() => removeProduct(product.id)}>
-                            <img src={trash}/>
-                        </button>
                     </div>
                 </div>
-            </div>
             ))}
                 <div className={style.divProceedToCheckout}>
                     <div className={style.divTotalPrice}>
                         <p>Total {totalProducts} Items</p>
-                        <span>USD {totalPrice}</span>
+                        <span>$ {totalPrice?.toFixed(2)}</span>
                     </div>
                     <button className={style.buttonChceckout}>
                         Proceed to Checkout

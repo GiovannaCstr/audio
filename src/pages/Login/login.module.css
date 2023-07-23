@@ -41,14 +41,14 @@
     padding: 1.25rem 2.75rem;
     border-radius: 10px;
     border: 1px solid var(--colors-grey, #BABABA);
-    margin-bottom: .75rem;
     width: 100%;
-    color: var(--grey);
+    margin-bottom: .75rem;
+    outline: none;
 }
 
 .input::placeholder {
     font-family: var(--main-font);
-    color: var(--gray);
+    color: var(--grey);
 }
 
 .logoInput {
@@ -106,4 +106,17 @@
     border-radius: 10px;
     border: none;
     margin: 2rem .75rem;
+}
+
+.divInput {
+    margin: 0;
+    padding: 0;
+}
+
+.errorText {
+    font-family: var(--main-font);
+    font-weight: 400;
+    text-align: center;
+    color: red;
+    margin-bottom: 1rem;
 }

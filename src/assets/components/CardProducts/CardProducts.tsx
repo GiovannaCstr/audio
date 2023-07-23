@@ -3,7 +3,6 @@ import style from './CardProducts.module.css';
 import headset from './img/image 5.png';
 import star from './img/star.png';
 import verticalMenu from './img/more-vertical.svg';
-import { ReactNode } from 'react';
 
 interface CardProps {
     name: string;
@@ -19,17 +18,17 @@ const CardProducts = ({ name, price, rating, className, reviews, id  }: CardProp
         <Link to={`/productDetail/${id}`} className={style.link}>
             <div className={`${style.cardProducts} ${className}`}>
                 <img src={headset} className={style.imageProduct}/>
-                <div>
+                <div className={style.divInfos}>
                     <h1 className={style.title}>{name}</h1>
-                    <span className={style.price}>USD {price}</span>
+                    <span className={style.price}>{price}</span>
                     <div className={style.divRating}>
                         <div className={style.divRating}>
                             <p className={style.divStar}>
                                 <img src={star} className={style.rating}/>
                                 {rating}
                             </p>
-                            <p>{reviews} reviews</p>
                         </div>
+                        <p>{reviews} reviews</p>
                         <img src={verticalMenu} alt="" />
                     </div>
                 </div>

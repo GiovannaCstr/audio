@@ -1,7 +1,6 @@
 .containerSearch {
     font-family: var(--main-font);
-    margin: 1.5rem;
-
+    padding: 1.5rem;
 }
 
 .searchTitle {
