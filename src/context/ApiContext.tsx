@@ -1,7 +1,7 @@
 import { ReactElement, createContext, useState, useEffect } from "react"; 
 import { api } from "../services/api"; 
 
-export interface ApiResponse {
+export interface IApiResponse {
     category: string,
     created_at: string,
     description: string,
@@ -18,9 +18,9 @@ export interface ApiResponse {
 }
 
 interface ProductsContext {
-    items: ApiResponse[];
-    headphones: ApiResponse[];
-    headsets: ApiResponse[];
+    items: IApiResponse[];
+    headphones: IApiResponse[];
+    headsets: IApiResponse[];
 }
 
 interface ProductsProviderProps {
@@ -30,22 +30,22 @@ interface ProductsProviderProps {
 export const ApiContext = createContext<ProductsContext>({items: [], headphones: [], headsets: []});
 
 export const ProductsProvider = ({children} : ProductsProviderProps) => {
-    const [items, setItems] = useState<ApiResponse[]>([]);
-    const [headphones, setHeadphones] = useState<ApiResponse[]>([]);
-    const [headsets, setHeadsets] = useState<ApiResponse[]>([]);
+    const [items, setItems] = useState<IApiResponse[]>([]);
+    const [headphones, setHeadphones] = useState<IApiResponse[]>([]);
+    const [headsets, setHeadsets] = useState<IApiResponse[]>([]);
 
     useEffect(() => {
         api.get('./').then((response) => {
-            const allProducts: ApiResponse[] = response.data;
+            const allProducts: IApiResponse[] = response.data;
             setItems(allProducts);
             
             const filteredHeadphones = allProducts.filter(
-                ((product: ApiResponse) => product.category === "Headphones")
+                ((product: IApiResponse) => product.category === "Headphones")
             )
             setHeadphones(filteredHeadphones);
 
             const filteredHeadsets = allProducts.filter(
-                ((product: ApiResponse) => product.category === "Headsets")
+                ((product: IApiResponse) => product.category === "Headsets")
             )
             setHeadsets(filteredHeadsets);
         })

@@ -19,10 +19,10 @@
 }
 
 .buttonSection {
-    font-family: var(--main-font);
-    font-size: 1rem;
     background-color: transparent;
     border: none;
+    font-family: var(--main-font);
+    font-size: 1rem;
     margin-right: 1.5rem;
     margin-bottom: 1.25rem;
 }
@@ -60,12 +60,16 @@
 }
 
 .seeAll {
-    text-decoration: none;
     color: var(--dark-grey);
+    text-decoration: none;
 }
 
 .divCarousel {
     margin-bottom: 4rem;
+}
+
+.divDetails {
+    padding: 0 1.5rem;
 }
 
 .divAnotherProduct {
@@ -77,15 +81,15 @@
     background-color: var(--accent-color);
     border: none;
     border-radius: 10px;
+    bottom: 1rem;
+    color: var(--main-color);
     font-family: var(--main-font);
     font-size: 1rem;
     font-weight: 700;
-    color: var(--main-color);
     padding: 1rem;
-    width: 90%;
     position: fixed;
-    bottom: 1rem;
     margin: 0 auto;
+    width: 90%;
     z-index: 999;
 }
 

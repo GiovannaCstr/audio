@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 import trash from './img/trash.svg';
 import backIcon from './img/back.svg';
@@ -7,9 +7,23 @@ import productImage from './img/prductImage.png';
 import arrow from './img/arrow.svg';
 import emptyCart from './img/shopping-cart-empty.png';
 import style from './ShoppingCart.module.css';
+import Swal from "sweetalert2";
+
 
 export function ShoppingCart() {
     const navigate = useNavigate();
+
+    const handlePopUp = () => {
+        Swal.fire({
+            icon: "success",
+            title: "Purchase completed successfully",
+            html: "Click to continue.",
+            confirmButtonColor: "#0ACF83"
+        }).then((result) => {
+            navigate('/home');
+            clearAllProducts();
+        });
+    }
 
     const { 
         products, 
@@ -65,11 +79,12 @@ export function ShoppingCart() {
                         <p>Total {totalProducts} Items</p>
                         <span>$ {totalPrice?.toFixed(2)}</span>
                     </div>
-                    <button className={style.buttonChceckout}>
+                    <button className={style.buttonChceckout}
+                        onClick={handlePopUp}>
                         Proceed to Checkout
                         <img src={arrow}/>
                     </button>
-                </div>
+                </div>      
             </section>
         </main>
     )

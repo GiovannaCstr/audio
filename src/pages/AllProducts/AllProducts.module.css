@@ -7,9 +7,9 @@
 }
 
 .featuredProducts {
-    margin-top: 2rem;
     font-size: 1rem;
     font-weight: 400;
+    margin-top: 2rem;
 }
 
 .seeAllProducts {
@@ -19,42 +19,42 @@
 }
 
 .buttonFilter {
-    font-family: var(--main-font);
-    font-size: 1rem;
-    font-weight: 400;
     background-color: transparent;
     border: 1px solid var(--grey);
-    width: 100%;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: .5rem;
+    font-family: var(--main-font);
+    font-size: 1rem;
+    font-weight: 400;
     padding: .75rem;
-    border-radius: 10px;
     margin: 1.5rem 0;
+    width: 100%;
 }
 
 .divCarousel {
+    background-color: var(--light-grey);
+    border-radius: 1.5rem 1.5rem 0 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 1rem;
     padding: 1.5rem;
-    background-color: var(--light-grey);
-    border-radius: 1.5rem 1.5rem 0 0;
 }
 
 .cardProducts {
-    flex-direction: column;
     background-color: var(--main-color);
-    padding: .75rem;
     border-radius: 12px;
+    flex-direction: column;
+    padding: .75rem;
 }
 
 .cardProducts img {
-    width: auto;    
+    background: transparent;
     height: auto;
     margin: 0;
-    background: transparent;
+    width: auto;    
 }
 
 .cardProducts h1 {
@@ -66,8 +66,8 @@
 }
 
 .bottomSheetBody {
-    padding: 1.5rem;
     font-family: var(--main-font);
+    padding: 1.5rem;
 }
 
 .bottomSheetHeader {
@@ -89,31 +89,53 @@
 }
 
 .sortBy {
+    background: transparent;
+    border: 1px solid var(--dark-grey);
+    border-radius: 10px;
     font-family: var(--main-font);
     font-size: 1rem;
-    border: 1px solid var(--dark-grey);
-    background: transparent;
-    padding: .75rem;
-    border-radius: 10px;
     margin: 0 1rem 1rem 0;
+    padding: .75rem;
 }
 
-.sortBy:hover {
+.active {
     background-color: var(--accent-color);
     border: 1px solid var(--accent-color);
     color: var(--main-color);
 }
 
 .applyFilter {
+    background-color: var(--accent-color);
+    border-radius: 10px;
+    border: none;
+    color: var(--main-color);
     font-family: var(--main-font);
     font-size: 1rem;
     font-weight: 700;
-    color: var(--main-color);
-    border: none;
-    border-radius: 10px;
-    background-color: var(--accent-color);
-    padding: .75rem;
     margin-top: 1.75rem;
+    padding: .75rem;
     width: 100%;
 }
 
+.divClearFilters {
+    display: flex;
+    gap: 1rem;
+}
+
+.clearFilters {
+    background: transparent;
+    border: 1px solid var(--dark-grey);
+    border-radius: 10px;
+    font-family: var(--main-font);
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;  
+    padding: .5rem;
+}
+
+.clearFiltersIcon {
+    height: 20px;
+    opacity: 60%;
+    width: 20px;
+}

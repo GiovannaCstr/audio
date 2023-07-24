@@ -1,9 +1,9 @@
+import style from './ProductDetail.module.css';
 import { useParams, Link } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import { ApiContext } from '../../context/ApiContext';
 import { ShoppingCartContext } from '../../context/ShoppingCartContext';
 import { SwiperSlide } from 'swiper/react';
-import style from './ProductDetail.module.css';
 import BackBar from '../../assets/components/BackBar/BackBar';
 import Carousel from '../../assets/components/Carousel/Carousel';
 import FeaturedProducts from '../../assets/components/FeaturedProducts/FeaturedProducts';
@@ -56,10 +56,7 @@ export function ProductDetail() {
 
   return (
     <main className={style.divMain}>
-
-      
-        
-        <div className={style.divTitle}> 
+      <div className={style.divTitle}> 
         <BackBar/>
           <span className={style.price}>{price}</span>
           <h1 className={style.title}>{name}</h1>
@@ -123,7 +120,7 @@ export function ProductDetail() {
         </section> 
           :  
         <section>
-          <div>
+          <div className={style.divDetails}>
             <h2 className={style.subtitle}>Highly Detailed Audio</h2>
             <p className={style.text}>{description}</p>
             <p className={style.text}>{description}</p>
@@ -133,8 +130,6 @@ export function ProductDetail() {
       <div className={style.divTitle}>
         <button className={style.buttonAddToCart} onClick={addToCart}>Add to Cart</button>
       </div>  
-      
-      
     </main>
   )
 }

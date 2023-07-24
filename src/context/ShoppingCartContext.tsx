@@ -1,6 +1,6 @@
 import { ReactElement, createContext, useState } from "react";
 
-interface Product {
+interface IProduct {
     id: number;
     name: string;
     price: string;
@@ -8,10 +8,10 @@ interface Product {
 }
 
 interface ProductsContext {
-    products: Product[],
+    products: IProduct[],
     totalPrice?: number;
     totalProducts?: number;
-    addProduct: (products: Product) => void;
+    addProduct: (products: IProduct) => void;
     removeProduct: (id: number) => void;
     clearAllProducts: () => void;
     addQuantity: (id: number) => void;
@@ -25,9 +25,9 @@ interface ShoppingCartProps {
 export const ShoppingCartContext = createContext<ProductsContext>({} as ProductsContext);
 
 export function ShoppingCartProvider({ children }: ShoppingCartProps) {
-    const [products, setProducts] = useState<Product[]>([]);
+    const [products, setProducts] = useState<IProduct[]>([]);
 
-    function addProduct(product: Product) {
+    function addProduct(product: IProduct) {
         setProducts([...products, product]);
         product.quantity = 1;
     }
@@ -54,8 +54,6 @@ export function ShoppingCartProvider({ children }: ShoppingCartProps) {
 
     const totalPrice = products.reduce((accumulator, product) => accumulator + (Number(product.price.slice(1)) * (Number(product.quantity) || 1)), 0);
     const totalProducts = products.reduce((accumulator, product) => accumulator + (product.quantity || 1), 0) || 0;
-
-    console.log(products)
 
     return (
         <ShoppingCartContext.Provider value={{ products, addProduct, removeProduct, clearAllProducts, addQuantity, removeQuantity, totalPrice, totalProducts }}>

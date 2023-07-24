@@ -1,24 +1,23 @@
+import style from './login.module.css';
 import gitHub from './img/gitHubIcon.svg';
 import facebook from './img/facebook.svg';
 import google from './img/google.svg';
 import logoEmail from './img/mail.svg';
 import logoPadLock from './img/lock.svg';
-import style from './login.module.css';
-import { useState, useEffect } from 'react';
+import Swal from "sweetalert2";
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../../services/firebase';
-import { createUserWithEmailAndPassword, 
-        GoogleAuthProvider, signInWithPopup, 
-        FacebookAuthProvider, signInWithEmailAndPassword, 
-        GithubAuthProvider, onAuthStateChanged } from 'firebase/auth';
+import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, 
+        FacebookAuthProvider, signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 
+        
 export function Login() {
     const providerGoogle = new GoogleAuthProvider();
     const providerFacebook = new FacebookAuthProvider();
-    const providerGitHub = new GithubAuthProvider();
 
     const [loginError, setLoginError] = useState<string>("");
-    const [regiterError, setRegisterError] = useState<string>("");
+    const [registerError, setRegisterError] = useState<string>("");
 
     const [loginEmail, setEmail] = useState<string>("");
     const [loginPassword, setPassword] = useState<string>("");
@@ -27,17 +26,7 @@ export function Login() {
     const [change, setChange] = useState<boolean>(true);
     const navigate = useNavigate();
 
-    useEffect(()=>{
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-              const uid = user.uid;
-              console.log("uid", uid)
-            } else {
-              navigate("/");
-            }
-          });
-         
-    }, []);
+    
 
     const login = async () => {
         try {
@@ -68,11 +57,29 @@ export function Login() {
                 registerEmail,
                 registerPassword
             );
-            console.log(user);
+            navigate("/home");
         } catch (error: any) {
-            console.log(error.message)
-            setRegisterError("This email is already in use")
+            setRegisterError("Invalid email or password")
         }
+    }
+
+    const forgetPassword = async () => {
+        try {
+            if (loginEmail) {
+              await sendPasswordResetEmail(auth, loginEmail);
+              Swal.fire({
+                icon: "info",
+                title: "Forgot Password",
+                html: "Password reset email sent successfully!",
+                confirmButtonColor: "#0ACF83"
+              });
+              setLoginError("");
+            } else {
+            setLoginError("Please enter a valid email to reset your password.");
+            }
+          } catch (error) {
+            setLoginError("There was an error sending the password reset email.");
+          }
     }
 
     function googleSignUp() {
@@ -105,124 +112,104 @@ export function Login() {
             const credential = FacebookAuthProvider.credentialFromError(error);
         });
     }
-
-    function gitHubSignUp() {    
-        signInWithPopup(auth, providerGitHub)
-        .then((result) => {
-            const credential = GithubAuthProvider.credentialFromResult(result);
-            const token = credential?.accessToken;
-            const user = result.user;
-            navigate("/home");
-        }).catch((error: any) => {
-            console.log(error)
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            const email = error.customData.email;
-            const credential = GithubAuthProvider.credentialFromError(error);
-        });
-    }
-
-   
+  
 
     return(
-    <>
         <section className={style.background}>
-        <div className={style.divTitle}>
-            <h1 className={style.title}>Audio</h1>
-            <h2 className={style.subtitle}>It's modular and designed to last</h2>
-        </div>
-
-        {change ?  
-        <div className={style.divLogin}>
-            {loginError && <p className={style.errorText}>{loginError}</p>}
-            <div>
-                <input 
-                    type="email" 
-                    placeholder="Email" 
-                    onChange={(event) => {setEmail(event.target.value)}}
-                    value={loginEmail}
-                    className={style.input}
-                />
-                <img src={logoEmail} className={style.logoInput}/>
-            </div>
-            <div className={style.divInput}>
-                <input 
-                    type="password" 
-                    placeholder="Password"
-                    onChange={(event) => {setPassword(event.target.value)}}
-                    value={loginPassword}
-                    className={style.input}
-                />
-                <img src={logoPadLock} className={style.logoInput}/>
-            </div>
-            <h3 className={style.loginParagraph}>Forgot Password</h3>
-            <button onClick={login} className={style.loginButton}>Sign In</button>
-            <div className={style.divAcounts}>
-                <button onClick={gitHubSignUp}
-                    className={style.buttonAcounts}>
-                    <img src={gitHub}/>
-                </button>
-                <button onClick={facebookSignUp}
-                    className={style.buttonAcounts}>
-                    <img src={facebook}/>
-                </button>
-                <button onClick={googleSignUp}
-                    className={style.buttonAcounts}>
-                    <img src={google}/>
-                </button>
-            </div>
-            <p className={style.loginParagraph}>Didn't have any account? 
-                <button onClick={() => setChange(false)} className={style.loginLink}>
-                    Sign Up here
-                </button>
-            </p>
-        </div> : 
-        <div className={style.divLogin}>
-        {regiterError && <p className={style.errorText}>{regiterError}</p>}
-            <div>
-                <input 
-                    type="email" 
-                    placeholder="Email" 
-                    onChange={(event) => {setEmailRegister(event.target.value)}}
-                    value={registerEmail}
-                    className={style.input}
-                />
-                <img src={logoEmail} className={style.logoInput}/>
-            </div>
-            <div>
-                <input 
-                    type="password" 
-                    placeholder="Password"
-                    onChange={(event) => {setPasswordRegister(event.target.value)}}
-                    value={registerPassword}
-                    className={style.input}
-                />
-                <img src={logoPadLock} className={style.logoInput}/>
-            </div>
-            <button onClick={register} className={style.registerButton}>Sign Up</button>
-            <div className={style.divAcounts}>
-                <button onClick={gitHubSignUp}
-                    className={style.buttonAcounts}>
-                    <img src={gitHub}/>
-                </button>
-                <button onClick={facebookSignUp}
-                    className={style.buttonAcounts}>
-                    <img src={facebook}/>
-                </button>
-                <button onClick={googleSignUp}
-                    className={style.buttonAcounts}>
-                    <img src={google}/>
-                </button>
-            </div>
-            <p className={style.loginParagraph}>
-                If you have an account? 
-                <button onClick={() => setChange(true)} className={style.loginLink}>
-                    Sign In here
-                </button>
-            </p>
-        </div>
-        }
+            <div className={style.divTitle}>
+                <h1 className={style.title}>Audio</h1>
+                <h2 className={style.subtitle}>It's modular and designed to last</h2>
+            </div>            
+            {change ?  
+                <div className={style.divLogin}>
+                    {loginError && <p className={style.errorText}>{loginError}</p>}
+                    <div>
+                        <input 
+                            type="email" 
+                            placeholder="Email" 
+                            onChange={(event) => {setEmail(event.target.value)}}
+                            value={loginEmail}
+                            className={style.input}
+                        />
+                        <img src={logoEmail} className={style.logoInput}/>
+                    </div>
+                    <div className={style.divInput}>
+                        <input 
+                            type="password" 
+                            placeholder="Password"
+                            onChange={(event) => {setPassword(event.target.value)}}
+                            value={loginPassword}
+                            className={style.input}
+                        />
+                        <img src={logoPadLock} className={style.logoInput}/>
+                    </div>
+                    <h3 className={style.loginParagraph} onClick={forgetPassword}>Forgot Password</h3>
+                    <button onClick={login} className={style.loginButton}>Sign In</button>
+                    <div className={style.divAcounts}>
+                        <button
+                            className={style.buttonAcounts}>
+                            <img src={gitHub}/>
+                        </button>
+                        <button onClick={facebookSignUp}
+                            className={style.buttonAcounts}>
+                            <img src={facebook}/>
+                        </button>
+                        <button onClick={googleSignUp}
+                            className={style.buttonAcounts}>
+                            <img src={google}/>
+                        </button>
+                    </div>
+                    <p className={style.loginParagraph}>Didn't have any account? 
+                        <button onClick={() => setChange(false)} className={style.loginLink}>
+                            Sign Up here
+                        </button>
+                    </p>
+                </div> : 
+                <div className={style.divLogin}>
+                    {registerError && <p className={style.errorText}>{registerError}</p>}
+                    <div>
+                        <input 
+                            type="email" 
+                            placeholder="Email" 
+                            onChange={(event) => {setEmailRegister(event.target.value)}}
+                            value={registerEmail}
+                            className={style.input}
+                        />
+                        <img src={logoEmail} className={style.logoInput}/>
+                    </div>
+                    <div>
+                        <input 
+                            type="password" 
+                            placeholder="Password"
+                            onChange={(event) => {setPasswordRegister(event.target.value)}}
+                            value={registerPassword}
+                            className={style.input}
+                        />
+                        <img src={logoPadLock} className={style.logoInput}/>
+                    </div>
+                    <button onClick={register} className={style.registerButton}>Sign Up</button>
+                    <div className={style.divAcounts}>
+                        <button
+                            className={style.buttonAcounts}>
+                            <img src={gitHub}/>
+                        </button>
+                        <button onClick={facebookSignUp}
+                            className={style.buttonAcounts}>
+                            <img src={facebook}/>
+                        </button>
+                        <button onClick={googleSignUp}
+                            className={style.buttonAcounts}>
+                            <img src={google}/>
+                        </button>
+                    </div>
+                    <p className={style.loginParagraph}>
+                        If you have an account? 
+                        <button onClick={() => setChange(true)} className={style.loginLink}>
+                            Sign In here
+                        </button>
+                    </p>
+                </div>
+            }
         </section>       
-    </>
     )
 }

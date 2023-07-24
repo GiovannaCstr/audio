@@ -1,5 +1,9 @@
 @import url('../../global.css');
 
+body {
+    font-family: var(--main-font);
+}
+
 .background {
     height: 100vh;
     width: 100vw;
@@ -17,7 +21,6 @@
 }
 
 .title {
-    font-family: var(--main-font);
     color: var(--main-color);
     font-weight: 700;
     font-size: 3rem;
@@ -25,7 +28,6 @@
 }
 
 .subtitle {
-    font-family: var(--main-font);
     color: var(--main-color);
     font-weight: 700;
     font-size: 1rem;
@@ -38,62 +40,61 @@
 }
 
 .input {
-    padding: 1.25rem 2.75rem;
-    border-radius: 10px;
     border: 1px solid var(--colors-grey, #BABABA);
-    width: 100%;
+    border-radius: 10px;
     margin-bottom: .75rem;
     outline: none;
+    padding: 1.25rem 2.75rem;
+    width: 100%;
 }
 
 .input::placeholder {
-    font-family: var(--main-font);
     color: var(--grey);
 }
 
 .logoInput {
+    bottom: 3.25rem;
     position: relative;
     right: -1rem;
-    bottom: 3.25rem;
 }
 
 .loginButton {
     background-color: var(--accent-color);
-    color: var(--main-color);
-    padding: 1.25rem;
     border-radius: 10px;
     border: none;
+    color: var(--main-color);
     font-size: 1rem;
     font-family: var(--main-font);
     margin-top: 2rem;
+    padding: 1.25rem;
 }
 
 .loginParagraph {
-    font-family: var(--main-font);
     color: var(--main-color);
-    text-align: center;
+    font-family: var(--main-font);
     font-size: 1rem;
+    text-align: center;
 }
 
 .loginLink {
-    font-family: var(--main-font);
+    background-color: transparent;
+    border: none;
     color: var(--accent-color);
+    font-family: var(--main-font);
     font-weight: 700;
     font-size: 1rem;
     margin-left: .5rem;
-    background-color: transparent;
-    border: none;
     text-decoration: underline;
 }
 
 .registerButton {
     background-color: var(--accent-color);
-    color: var(--main-color);
-    padding: 1.25rem;
     border-radius: 10px;
     border: none;
+    color: var(--main-color);
     font-size: 1rem;
     font-family: var(--main-font);
+    padding: 1.25rem;
 }
 
 .divAcounts {
@@ -120,3 +121,14 @@
     color: red;
     margin-bottom: 1rem;
 }
+
+.popup-title {
+    font-family: "Arial", sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .popup-content {
+    font-family: "Helvetica", sans-serif;
+    font-size: 16px;
+  }

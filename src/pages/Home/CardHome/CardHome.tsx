@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
 import style from './CardHome.module.css';
+import { Link } from 'react-router-dom';
 import arrow from './img/greenarrow.svg';
 import foto from './img/image 5.png';
 
