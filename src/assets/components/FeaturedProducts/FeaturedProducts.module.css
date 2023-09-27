@@ -1,7 +1,7 @@
 .divFeaturedProducts {
     background-color: var(--main-color);
-    padding: 1rem;
     border-radius: 1rem;
+    padding: 1rem;
     font-family: var(--main-font);
 }
 

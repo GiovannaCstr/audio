@@ -40,7 +40,7 @@ body {
 }
 
 .input {
-    border: 1px solid var(--colors-grey, #BABABA);
+    border: 1px solid var(--grey);
     border-radius: 10px;
     margin-bottom: .75rem;
     outline: none;
@@ -50,6 +50,7 @@ body {
 
 .input::placeholder {
     color: var(--grey);
+    font-size: 1rem;
 }
 
 .logoInput {
@@ -67,6 +68,10 @@ body {
     font-family: var(--main-font);
     margin-top: 2rem;
     padding: 1.25rem;
+}
+
+.linkPassword {
+    text-decoration: none;
 }
 
 .loginParagraph {

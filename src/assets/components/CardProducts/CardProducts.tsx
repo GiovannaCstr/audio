@@ -4,7 +4,7 @@ import headset from './img/image 5.png';
 import star from './img/star.png';
 import verticalMenu from './img/more-vertical.svg';
 
-interface CardProps {
+interface ICardProps {
     name: string;
     price: string;
     rating: number;
@@ -13,7 +13,7 @@ interface CardProps {
     id: number;
 }
 
-const CardProducts = ({ name, price, rating, className, reviews, id  }: CardProps) => {
+const CardProducts = ({ name, price, rating, className, reviews, id  }: ICardProps) => {
     return (
         <Link to={`/productDetail/${id}`} className={style.link}>
             <div className={`${style.cardProducts} ${className}`}>

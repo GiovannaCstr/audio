@@ -7,6 +7,7 @@ import { AllProducts } from "../pages/AllProducts/AllProducts";
 import { ProductDetail } from "../pages/ProductDetails/ProductDetail";
 import { ShoppingCart } from "../pages/ShoppingCart/ShoppingCart";
 import { ShoppingCartProvider } from "../context/ShoppingCartContext";
+import { ForgotPassword } from "../pages/ForgotPassword/forgotPassword";
 
 export function AppRoutes() {
 
@@ -17,6 +18,7 @@ export function AppRoutes() {
                 <Routes>
                     <Route path="/" element={<Login/>}/>
                     <Route path="/home" element={<Home/>}/> 
+                    <Route path="/forgotPassword" element={<ForgotPassword/>}/> 
                     <Route path="/search" element={<Search/>}/>
                     <Route path="/allproducts" element={<AllProducts/>}/>
                     <Route path="/productDetail/:id" element={<ProductDetail/>}/>

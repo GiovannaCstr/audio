@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 import trash from './img/trash.svg';
 import backIcon from './img/back.svg';

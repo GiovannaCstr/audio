@@ -4,9 +4,8 @@ import facebook from './img/facebook.svg';
 import google from './img/google.svg';
 import logoEmail from './img/mail.svg';
 import logoPadLock from './img/lock.svg';
-import Swal from "sweetalert2";
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../../services/firebase';
 import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, 
         FacebookAuthProvider, signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
@@ -59,27 +58,9 @@ export function Login() {
             );
             navigate("/home");
         } catch (error: any) {
+            console.log(error)
             setRegisterError("Invalid email or password")
         }
-    }
-
-    const forgetPassword = async () => {
-        try {
-            if (loginEmail) {
-              await sendPasswordResetEmail(auth, loginEmail);
-              Swal.fire({
-                icon: "info",
-                title: "Forgot Password",
-                html: "Password reset email sent successfully!",
-                confirmButtonColor: "#0ACF83"
-              });
-              setLoginError("");
-            } else {
-            setLoginError("Please enter a valid email to reset your password.");
-            }
-          } catch (error) {
-            setLoginError("There was an error sending the password reset email.");
-          }
     }
 
     function googleSignUp() {
@@ -143,7 +124,9 @@ export function Login() {
                         />
                         <img src={logoPadLock} className={style.logoInput}/>
                     </div>
-                    <h3 className={style.loginParagraph} onClick={forgetPassword}>Forgot Password</h3>
+                    <Link to={`/forgotPassword/${loginEmail}`} className={style.linkPassword}>
+                        <h3 className={style.loginParagraph}>Forgot Password</h3>
+                    </Link>
                     <button onClick={login} className={style.loginButton}>Sign In</button>
                     <div className={style.divAcounts}>
                         <button
