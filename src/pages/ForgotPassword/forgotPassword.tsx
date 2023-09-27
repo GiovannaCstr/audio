@@ -3,21 +3,19 @@ import backIcon from './img/back.svg';
 import audioIcon from './img/audioLogo.svg';
 import style from './forgotPassword.module.css';
 import Swal from "sweetalert2";
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { auth } from '../../services/firebase';
 import { sendPasswordResetEmail } from 'firebase/auth';
+import { useState } from 'react';
 
 export function ForgotPassword() {
     const navigate = useNavigate();
-    const location = useLocation();
-    const searchParams = new URLSearchParams(location.search);
-    const loginEmail = searchParams.get('email');
+    const [ email, setEmail ] = useState<string>("");
 
     const forgetPassword = async () => {
-        console.log(loginEmail)
         try {
-            if (loginEmail) {
-              await sendPasswordResetEmail(auth, loginEmail);
+            if (email) {
+              await sendPasswordResetEmail(auth, email);
               Swal.fire({
                 icon: "info",
                 title: "Forgot Password",
@@ -25,7 +23,6 @@ export function ForgotPassword() {
                 confirmButtonColor: "#0ACF83"
               });
             //   setLoginError("");
-            console.log("mandei");
             } else {
             // setLoginError("Please enter a valid email to reset your password.");
             console.log("não tem")
@@ -53,8 +50,10 @@ export function ForgotPassword() {
                 <div className={style.divInput}>
                     <input
                         className={style.inputEmail} 
+                        onChange={(event) => {setEmail(event.target.value)}}
                         type='email'
                         placeholder='Enter your email'
+                        value={email}
                     />
                     <button className={style.buttonResetPassword}
                         onClick={forgetPassword}>Send Email

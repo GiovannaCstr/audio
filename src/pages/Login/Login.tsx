@@ -8,9 +8,8 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../../services/firebase';
 import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, 
-        FacebookAuthProvider, signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
+        FacebookAuthProvider, signInWithEmailAndPassword } from 'firebase/auth';
 
-        
 export function Login() {
     const providerGoogle = new GoogleAuthProvider();
     const providerFacebook = new FacebookAuthProvider();
@@ -24,8 +23,6 @@ export function Login() {
     const [registerPassword, setPasswordRegister] = useState<string>("");
     const [change, setChange] = useState<boolean>(true);
     const navigate = useNavigate();
-
-    
 
     const login = async () => {
         try {
@@ -58,7 +55,6 @@ export function Login() {
             );
             navigate("/home");
         } catch (error: any) {
-            console.log(error)
             setRegisterError("Invalid email or password")
         }
     }
@@ -93,7 +89,6 @@ export function Login() {
             const credential = FacebookAuthProvider.credentialFromError(error);
         });
     }
-  
 
     return(
         <section className={style.background}>
@@ -124,7 +119,7 @@ export function Login() {
                         />
                         <img src={logoPadLock} className={style.logoInput}/>
                     </div>
-                    <Link to={`/forgotPassword/${loginEmail}`} className={style.linkPassword}>
+                    <Link to={"/forgotPassword"} className={style.linkPassword}>
                         <h3 className={style.loginParagraph}>Forgot Password</h3>
                     </Link>
                     <button onClick={login} className={style.loginButton}>Sign In</button>
