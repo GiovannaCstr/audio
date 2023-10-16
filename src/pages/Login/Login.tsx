@@ -2,6 +2,7 @@ import style from './login.module.css';
 import gitHub from './img/gitHubIcon.svg';
 import facebook from './img/facebook.svg';
 import google from './img/google.svg';
+import audioLogo from './img/logoAudio.svg';
 import logoEmail from './img/mail.svg';
 import logoPadLock from './img/lock.svg';
 import { useState } from 'react';
@@ -93,11 +94,15 @@ export function Login() {
     return(
         <section className={style.background}>
             <div className={style.divTitle}>
-                <h1 className={style.title}>Audio</h1>
+                <h1 className={style.title}>
+                    <img src={audioLogo} alt='Application logo' className={style.logo}/>
+                    Audio
+                </h1>
                 <h2 className={style.subtitle}>It's modular and designed to last</h2>
             </div>            
             {change ?  
                 <div className={style.divLogin}>
+                    <h1 className={style.titleLogin}>Sign In</h1>
                     {loginError && <p className={style.errorText}>{loginError}</p>}
                     <div>
                         <input 
@@ -144,6 +149,7 @@ export function Login() {
                     </p>
                 </div> : 
                 <div className={style.divLogin}>
+                    <h1 className={style.titleLogin}>Sign Up</h1>
                     {registerError && <p className={style.errorText}>{registerError}</p>}
                     <div>
                         <input 

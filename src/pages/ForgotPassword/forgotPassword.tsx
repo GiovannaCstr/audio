@@ -59,11 +59,11 @@ export function ForgotPassword() {
                         onClick={forgetPassword}>Send Email
                     </button>
                 </div>
+                <footer className={style.footer}>
+                    <img src={audioIcon}/>
+                    <p>Audio</p>
+                </footer>
             </section>
-            <footer className={style.footer}>
-                <img src={audioIcon}/>
-                <p>Audio</p>
-            </footer>
         </main>
     )    
 }
