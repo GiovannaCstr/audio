@@ -35,7 +35,7 @@ export const ProductsProvider = ({children} : ProductsProviderProps) => {
     const [headsets, setHeadsets] = useState<IApiResponse[]>([]);
 
     useEffect(() => {
-        api.get('./').then((response) => {
+        api.get('./products').then((response) => {
             const allProducts: IApiResponse[] = response.data;
             setItems(allProducts);
             

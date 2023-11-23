@@ -1,4 +1,5 @@
 import style from './Home.module.css';
+import { slide as Menu } from 'react-burger-menu'
 import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 import { SwiperSlide } from 'swiper/react';
@@ -65,6 +66,11 @@ export function Home() {
                 <button className={style.buttonSideBar}>My Orders</button>
                 <button className={style.buttonSideBar}>Wishlist</button>
             </div>
+            {/* <Menu>
+                <Link to={'/shoppingCart'}>Cart</Link>
+                <Link to={'#'}>My Orders</Link>
+                <Link to={'#'}>Whishlist</Link>
+            </Menu> */}
 
             <section className={style.container}>
                 <p className={style.userName}>Hi, Andrea</p>
