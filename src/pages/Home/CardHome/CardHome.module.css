@@ -6,6 +6,12 @@
     border-radius: 1rem;
 }
 
+.divPhoto {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .title {
     font-size: 2rem;
     margin-bottom: 1rem;
@@ -23,8 +29,8 @@
     text-decoration: none;
 }
 
-@media screen and (min-width: 768px) {
-    .cardHome {
-        width: 60%;
+@media screen and (min-width: 1024px) {
+    .title {
+        font-size: 1.5rem;
     }
 }

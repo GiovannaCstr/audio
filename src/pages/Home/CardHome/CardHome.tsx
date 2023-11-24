@@ -11,7 +11,7 @@ interface cardProps {
 const CardHome = ({title, id}: cardProps) => {
     return (
         <div className={style.cardHome}>
-            <div>
+            <div className={style.divPhoto}>
                 <h1 className={style.title}>{title}</h1>
                 <Link to={`/productDetail/${id}`} className={style.link}>
                     <p className={style.shopNowLink}>

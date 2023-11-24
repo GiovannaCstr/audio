@@ -19,3 +19,10 @@
     text-decoration: none;
     color: var(--second-color);
 }
+
+
+@media screen and (min-width: 1024px) {
+    .productTitle {
+        font-size: .85rem;
+    }
+}
