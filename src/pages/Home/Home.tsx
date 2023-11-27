@@ -1,5 +1,4 @@
 import style from './Home.module.css';
-// import { slide as Menu } from 'react-burger-menu'
 import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 import { SwiperSlide } from 'swiper/react';
@@ -10,10 +9,13 @@ import CardHome from './CardHome/CardHome';
 import FeaturedProducts from '../../assets/components/FeaturedProducts/FeaturedProducts';
 import ButtonCategory from '../../assets/components/ButtonCategory/ButtonCategory';
 import AnimatedDiv from '../../assets/components/AnimatedDiv/AnimatedDiv';
-import menuIcon from './img/menuIcon.svg';
 import audioIcon from './img/audioLogo.svg';
 import userIcon from './img/userImage.png';
 import searchIcon from './img/search.svg';
+import wishlistIcon from './img/wishlist.svg';
+import notificationsIcon from './img/bell.svg';
+import helpIcon from './img/help-circle.svg';
+
 
 export function Home() {
     const [change, setChange] = useState<boolean>(true);
@@ -63,9 +65,7 @@ export function Home() {
     return(
         <AnimatedDiv>
             <header className={style.header}>
-                <button  className={style.buttonMenu} onClick={() => setMenuOpen(!menuOpen)}>
-                    <img src={menuIcon}/>
-                </button>
+                <div  className={`${style.buttonMenu} ${menuOpen ? style.active : style.buttonMenu}`} onClick={() => setMenuOpen(!menuOpen)}></div>
                 <div className={style.divIconAudio}>
                     <img src={audioIcon}/>
                     <h1 className={style.logo}>Audio</h1>
@@ -74,16 +74,22 @@ export function Home() {
             </header>
             
             <div className={`${style.sideBar} ${menuOpen ? style.sideBarOpen : style.sideBar}`}>
-                <button onClick={handleLogOut} className={style.buttonSideBar}>Logout</button>
-                <button className={style.buttonSideBar}>My Orders</button>
-                <button className={style.buttonSideBar}>Wishlist</button>
+                <button className={style.buttonSideBar}>
+                    Notifications
+                    <img src={notificationsIcon}/>
+                </button>
+                <button className={style.buttonSideBar}>
+                    Wishlist
+                    <img src={wishlistIcon}/>
+                </button>
+                <button className={style.buttonSideBar}>
+                    Help
+                    <img src={helpIcon}/>
+                </button>
+                <button onClick={handleLogOut} className={style.buttonSideBar}>
+                    Logout
+                </button>
             </div>
-            {/* <Menu>
-                <Link to={'/shoppingCart'}>Cart</Link>
-                <Link to={'#'}>My Orders</Link>
-                <Link to={'#'}>Whishlist</Link>
-            </Menu> */}
-
             
             <div className={style.principalContent}>
                 <section className={style.container}>
