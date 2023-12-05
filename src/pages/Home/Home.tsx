@@ -1,9 +1,10 @@
 import style from './Home.module.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 import { SwiperSlide } from 'swiper/react';
 import { ApiContext } from '../../context/ApiContext';
-import { auth } from '../../services/firebase';
+import { FaBars } from "react-icons/fa";
+import SideBar from '../../assets/components/SideBar/SideBar';
 import Carousel from '../../assets/components/Carousel/Carousel';
 import CardHome from './CardHome/CardHome';
 import FeaturedProducts from '../../assets/components/FeaturedProducts/FeaturedProducts';
@@ -12,33 +13,21 @@ import AnimatedDiv from '../../assets/components/AnimatedDiv/AnimatedDiv';
 import audioIcon from './img/audioLogo.svg';
 import userIcon from './img/userImage.png';
 import searchIcon from './img/search.svg';
-import wishlistIcon from './img/wishlist.svg';
-import notificationsIcon from './img/bell.svg';
-import helpIcon from './img/help-circle.svg';
 
 
 export function Home() {
     const [change, setChange] = useState<boolean>(true);
     const [isActiveHeadphones, setIsActiveHeadphones] = useState<boolean>(true);
     const [isActiveHeadsets, setIsActiveHeadsets] = useState<boolean>(false);
-    const [menuOpen, setMenuOpen] = useState<boolean>(false);
+    const [sideBarOpen, setSideBarOpen] = useState(false);
     const {headphones, headsets} = useContext(ApiContext);
-    const navigate = useNavigate();
+    
 
     useEffect(() => {
         setIsActiveHeadsets(!change);
         setIsActiveHeadphones(change);
     }, [change]);
 
-    const handleLogOut = () => {
-        try {
-            auth.signOut();
-            setMenuOpen(false);
-            navigate("/");
-        } catch (error) {
-            console.error('Error logging out:', error);
-        }
-    }
 
     const settingsCategory = {
         slidesPerView: 1,
@@ -62,35 +51,22 @@ export function Home() {
         }
     }
 
+    const toggleSideBar = () => {
+      setSideBarOpen(!sideBarOpen);
+    };
+
     return(
         <AnimatedDiv>
             <header className={style.header}>
-                <div  className={`${style.buttonMenu} ${menuOpen ? style.active : style.buttonMenu}`} onClick={() => setMenuOpen(!menuOpen)}></div>
+                <FaBars onClick={toggleSideBar} />
+                {sideBarOpen && <SideBar closeSideBar={() => setSideBarOpen(false)} />}
                 <div className={style.divIconAudio}>
                     <img src={audioIcon}/>
                     <h1 className={style.logo}>Audio</h1>
                 </div>
                 <img src={userIcon}/>
             </header>
-            
-            <div className={`${style.sideBar} ${menuOpen ? style.sideBarOpen : style.sideBar}`}>
-                <button className={style.buttonSideBar}>
-                    Notifications
-                    <img src={notificationsIcon}/>
-                </button>
-                <button className={style.buttonSideBar}>
-                    Wishlist
-                    <img src={wishlistIcon}/>
-                </button>
-                <button className={style.buttonSideBar}>
-                    Help
-                    <img src={helpIcon}/>
-                </button>
-                <button onClick={handleLogOut} className={style.buttonSideBar}>
-                    Logout
-                </button>
-            </div>
-            
+
             <div className={style.principalContent}>
                 <section className={style.container}>
                     <p className={style.userName}>Hi, Andrea</p>
