@@ -18,8 +18,8 @@ const SideBar = ({ closeSideBar }: { closeSideBar: () => void }) => {
 
     return(
         <nav className={style.sideBar}>
-            <FaTimes onClick={closeSideBar}/>
-            <ul className={style.sideBarList}>
+            <FaTimes className={style.iconCloseMenu} onClick={closeSideBar}/>
+            <div className={style.sideBarList}>
                 <button className={style.buttonSideBar}>
                     Notifications
                     <FaRegBell/>
@@ -36,7 +36,7 @@ const SideBar = ({ closeSideBar }: { closeSideBar: () => void }) => {
                     Logout
                     <FaSignOutAlt/>
                 </button>               
-            </ul>
+            </div>
         </nav>
     )
 }

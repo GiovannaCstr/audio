@@ -1,11 +1,9 @@
 .sideBar {
     background-color: var(--main-color);
     box-shadow: 5px 15px 20px rgba(0, 0, 0, 0.5);
-    visibility: visible;
     position: fixed;
     top: 0;
     left: 0;
-    transition: transform 0.3s; 
     width: 60%;
     height: 100%;
     z-index: 999999;
@@ -13,8 +11,8 @@
     animation: slideIn 0.3s forwards;
 }
 
-.sideBarList {
-    padding-top: 2rem;
+.iconCloseMenu {
+    margin-bottom: 2rem;
 }
 
 .buttonSideBar {
@@ -22,7 +20,7 @@
     justify-content: center;
     align-items: center;
     gap: .75rem;
-    background-color: transparent;
+    background-color: var(--main-color);
     border: 1px solid var(--grey);
     border-radius: 1rem;
     margin-bottom: 1rem;
@@ -43,5 +41,47 @@
     }
     to {
         transform: translateX(0);
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .iconCloseMenu {
+        display: none;
+    }
+
+    .sideBar {
+        background-color: transparent;
+        box-shadow: none;
+        position: relative;
+        width: auto;
+        transition: none;
+        animation: none;
+        z-index: 0;
+        height: auto;
+        padding: 0;
+    }
+        
+    .sideBarList {
+        padding: 0;
+        gap: 3rem;
+    }
+
+    .buttonSideBar {
+        border: none;
+        font-size: .85rem;
+        padding: .5rem;
+        margin-bottom: 0;
+    }
+
+    .buttonSideBar:hover {
+        background-color: var(--main-color)transparent;
+        border-bottom: 2px solid var(--grey);
+        border-radius: 0;
+        margin-bottom: -2px;
+    }
+
+    .sideBarList {
+        display: flex;
+        flex-direction: row;
     }
 }

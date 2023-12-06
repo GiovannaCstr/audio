@@ -1,6 +1,7 @@
 import style from './Home.module.css';
 import { Link } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
+import { useMediaQuery } from 'react-responsive';
 import { SwiperSlide } from 'swiper/react';
 import { ApiContext } from '../../context/ApiContext';
 import { FaBars } from "react-icons/fa";
@@ -36,7 +37,7 @@ export function Home() {
             768: {
                 slidesPerView: 2,
                 spaceBetween: 30
-            }
+            } 
         }
     }
 
@@ -54,19 +55,21 @@ export function Home() {
     const toggleSideBar = () => {
       setSideBarOpen(!sideBarOpen);
     };
+    
+    const isDesktopSize = useMediaQuery({query: '(min-width: 1024px)'});
 
     return(
         <AnimatedDiv>
             <header className={style.header}>
-                <FaBars onClick={toggleSideBar} />
+                <FaBars className={style.iconBurger} onClick={toggleSideBar} />
                 {sideBarOpen && <SideBar closeSideBar={() => setSideBarOpen(false)} />}
                 <div className={style.divIconAudio}>
                     <img src={audioIcon}/>
                     <h1 className={style.logo}>Audio</h1>
                 </div>
+                {isDesktopSize && <SideBar closeSideBar={() => setSideBarOpen(false)}/>}
                 <img src={userIcon}/>
             </header>
-
             <div className={style.principalContent}>
                 <section className={style.container}>
                     <p className={style.userName}>Hi, Andrea</p>

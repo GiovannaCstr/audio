@@ -182,4 +182,8 @@
         font-size: 2rem;
         padding: 1.5rem;
     }
+
+    .iconBurger {
+        display: none;
+    }
 }
