@@ -32,7 +32,8 @@ export function Search() {
                     {search === "" ? 
                         <p className={style.notFoundProduct}>Type to search for a product</p> 
                     :
-                        filteredItems.map((item) => (
+                    <div className={style.containerProducts}>  
+                        {filteredItems.map((item) => (
                             <CardProducts
                                 key={item.id}
                                 id={item.id}
@@ -40,8 +41,9 @@ export function Search() {
                                 price={item.price}
                                 rating={item.rating}
                                 reviews={item.reviews.length}
-                            />
-                        ))
+                            /> 
+                        ))}
+                    </div>
                     }
                 </section>
             </div>

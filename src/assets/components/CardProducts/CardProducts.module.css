@@ -46,3 +46,15 @@
     text-decoration: none;
     color: var(--second-color);
 }
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .cardProducts {
+        width: 350px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .cardProducts {
+        width: 400px;
+    }
+}
