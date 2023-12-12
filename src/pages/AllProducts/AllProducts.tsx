@@ -59,6 +59,28 @@ export function AllProducts() {
           Filter
         </button>
       </section>
+      <div className={style.allOurProducts}>
+        <p className={style.bannerSlogan}>All our products</p>                
+      </div>
+      <div className={style.filterDesktop}>
+        <h3 className={style.title}>Sort By</h3>
+        <div className={style.divFilterDesktop}>
+          <button className={`${style.sortBy} ${sortBy === "Popularity" ? style.active : ""}`} onClick={() => setSortBy("Popularity")}>Popularity</button>
+          <button className={`${style.sortBy} ${sortBy === "Newest" ? style.active : ""}`} onClick={() => setSortBy("Newest")}>Newest</button>
+          <button className={`${style.sortBy} ${sortBy === "Oldest" ? style.active : ""}`} onClick={() => setSortBy("Oldest")}>Oldest</button>
+          <button className={`${style.sortBy} ${sortBy === "High Price" ? style.active : ""}`} onClick={() => setSortBy("High Price")}>High Price</button>
+          <button className={`${style.sortBy} ${sortBy === "Low Price" ? style.active : ""}`} onClick={() => setSortBy("Low Price")}>Low Price</button>
+          <button className={`${style.sortBy} ${sortBy === "Review" ? style.active : ""}`} onClick={() => setSortBy("Review")}>Review</button>
+          <button 
+                  onClick={handleClearFilters}
+                  className={style.clearFilters}
+                >
+                  <img src={clearFilters} className={style.clearFiltersIcon}/>
+                  Clear filters
+                </button>
+          <button className={style.applyFilter} onClick={handleApllyFilter}>Apply Filter</button>
+        </div>
+      </div>
       <div className={style.divCarousel}>
         {filteredItems.map((item) => (
           <CardProducts
@@ -91,27 +113,27 @@ export function AllProducts() {
               </div>
             </div>
             <h3 className={style.title}>Category</h3>
-                <div>
-                    <ButtonCategory
-                       onClick={() => setSelectedCategory("Headphones")}
-                      isActive={selectedCategory === "Headphones"}
-                      label={"Headphones"}
-                    />
-                    <ButtonCategory
-                      onClick={() => setSelectedCategory("Headsets")}
-                      isActive={selectedCategory === "Headsets"}
-                      label={"Headsets"}
-                    />
-                </div>
-                <h3 className={style.title}>Sort By</h3>
-                  <button className={`${style.sortBy} ${sortBy === "Popularity" ? style.active : ""}`} onClick={() => setSortBy("Popularity")}>Popularity</button>
-                  <button className={`${style.sortBy} ${sortBy === "Newest" ? style.active : ""}`} onClick={() => setSortBy("Newest")}>Newest</button>
-                  <button className={`${style.sortBy} ${sortBy === "Oldest" ? style.active : ""}`} onClick={() => setSortBy("Oldest")}>Oldest</button>
-                  <button className={`${style.sortBy} ${sortBy === "High Price" ? style.active : ""}`} onClick={() => setSortBy("High Price")}>High Price</button>
-                  <button className={`${style.sortBy} ${sortBy === "Low Price" ? style.active : ""}`} onClick={() => setSortBy("Low Price")}>Low Price</button>
-                  <button className={`${style.sortBy} ${sortBy === "Review" ? style.active : ""}`} onClick={() => setSortBy("Review")}>Review</button>
+            <div>
+                <ButtonCategory
+                   onClick={() => setSelectedCategory("Headphones")}
+                  isActive={selectedCategory === "Headphones"}
+                  label={"Headphones"}
+                />
+                <ButtonCategory
+                  onClick={() => setSelectedCategory("Headsets")}
+                  isActive={selectedCategory === "Headsets"}
+                  label={"Headsets"}
+                />
+            </div>
+            <h3 className={style.title}>Sort By</h3>
+            <button className={`${style.sortBy} ${sortBy === "Popularity" ? style.active : ""}`} onClick={() => setSortBy("Popularity")}>Popularity</button>
+            <button className={`${style.sortBy} ${sortBy === "Newest" ? style.active : ""}`} onClick={() => setSortBy("Newest")}>Newest</button>
+            <button className={`${style.sortBy} ${sortBy === "Oldest" ? style.active : ""}`} onClick={() => setSortBy("Oldest")}>Oldest</button>
+            <button className={`${style.sortBy} ${sortBy === "High Price" ? style.active : ""}`} onClick={() => setSortBy("High Price")}>High Price</button>
+            <button className={`${style.sortBy} ${sortBy === "Low Price" ? style.active : ""}`} onClick={() => setSortBy("Low Price")}>Low Price</button>
+            <button className={`${style.sortBy} ${sortBy === "Review" ? style.active : ""}`} onClick={() => setSortBy("Review")}>Review</button>
                   
-                <button className={style.applyFilter} onClick={handleApllyFilter}>Apply Filter</button>
+            <button className={style.applyFilter} onClick={handleApllyFilter}>Apply Filter</button>
         </div>
       </BottomSheet>
     </main>

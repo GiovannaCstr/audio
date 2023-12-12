@@ -45,9 +45,11 @@
 
 .cardProducts {
     background-color: var(--main-color);
+    box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.25);
     border-radius: 12px;
     flex-direction: column;
     padding: .75rem;
+    width: 100%;
 }
 
 .cardProducts img {
@@ -63,6 +65,10 @@
 
 .cardProducts span {
     font-size: 1rem;
+}
+
+.filterDesktop {
+    display: none;
 }
 
 .bottomSheetBody {
@@ -138,4 +144,69 @@
     height: 20px;
     opacity: 60%;
     width: 20px;
+}
+
+.allOurProducts {
+    background: linear-gradient(95deg, rgba(18, 80, 56, 0.70) 0.86%, rgba(18, 80, 56, 0.15) 119.68%), url('./img/image_responsive_2.png') no-repeat;
+    background-size: cover;
+    background-position: 50%;
+    padding: 2rem;
+    border-radius: 8px;
+    margin: 0 1.5rem 1.5rem;
+    display: none;
+}
+
+.bannerSlogan {
+    color: var(--main-color);
+    font-weight: 700;
+    font-size: 2rem;
+    padding: 1.5rem;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .allOurProducts {
+        display: block;
+    }   
+    
+    .divCarousel {
+        grid-template-columns: repeat(3, 32%);
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .allOurProducts {
+        display: block;
+    }   
+    
+    .divCarousel {
+        grid-template-columns: repeat(4, 24%);
+    }
+
+    .buttonFilter {
+        display: none;
+    }
+
+    .filterDesktop {
+        display: flex;
+        padding: 1.5rem;
+        gap: 1rem;
+    }
+    
+    .divFilterDesktop {
+        width: 90%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        justify-content: space-around;
+    }
+
+    .applyFilter {
+        width: 20%;
+        margin: 0 1rem;
+    }
+
+    .sortBy {
+        margin: 0 .5rem;
+    }
+
 }
